@@ -11,6 +11,22 @@ const { verifyAdmin } = require('../controllers/adminController');
 const { uploadExpenseImage } = require('../middleware/multerConfig');
 
 /**
+ * GET /api/expenses
+ * Root endpoint - check if expense routes are working
+ */
+router.get('/', (req, res) => {
+  res.json({
+    message: '✅ Expense routes are working',
+    endpoints: {
+      'GET /all': 'Get all expenses (public)',
+      'POST /add': 'Add new expense (admin only)',
+      'POST /upload-image': 'Upload expense bill image (admin only)',
+      'DELETE /delete': 'Delete expense (admin only)'
+    }
+  });
+});
+
+/**
  * POST /expenses/add
  * Add new expense (admin only)
  */

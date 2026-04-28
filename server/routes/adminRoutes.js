@@ -12,6 +12,25 @@ const router = express.Router();
 const adminController = require('../controllers/adminController');
 
 /**
+ * GET /api/admin
+ * Root endpoint - check if admin routes are working
+ */
+router.get('/', (req, res) => {
+  res.json({
+    message: '✅ Admin routes are working',
+    endpoints: {
+      'POST /login': 'Admin login (no auth required)',
+      'GET /pending': 'Get pending donations (auth required)',
+      'GET /all-donations': 'Get all donations (auth required)',
+      'POST /approve': 'Approve donation (auth required)',
+      'POST /reject': 'Reject donation (auth required)',
+      'POST /update-trees': 'Update tree count (auth required)',
+      'GET /total-trees': 'Get total trees (auth required)'
+    }
+  });
+});
+
+/**
  * POST /api/admin/login
  * Admin login with password
  * Body: { password }

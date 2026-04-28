@@ -12,6 +12,22 @@ const router = express.Router();
 const donationController = require('../controllers/donationController');
 
 /**
+ * GET /api/donations
+ * Root endpoint - check if donation routes are working
+ */
+router.get('/', (req, res) => {
+  res.json({
+    message: '✅ Donation routes are working',
+    endpoints: {
+      'GET /approved': 'Get all approved donations',
+      'GET /stats': 'Get donation statistics',
+      'GET /top-supporters': 'Get top 3 supporters',
+      'POST /submit': 'Submit a new donation'
+    }
+  });
+});
+
+/**
  * POST /api/donations/submit
  * Submit a new donation
  * Body: { name, amount, isPublic, screenshotPath }
