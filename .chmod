@@ -1,0 +1,4 @@
+#!/bin/bash
+# Make start.sh executable on Mac/Linux
+chmod +x start.sh
+echo "✅ Start script is now executable. Run: ./start.sh"

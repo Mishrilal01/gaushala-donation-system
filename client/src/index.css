@@ -1,0 +1,54 @@
+/**
+ * Global Styles
+ * Tailwind CSS and custom styles
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utility classes */
+@layer components {
+  /* Large button for mobile-friendly design */
+  .btn-large {
+    @apply py-4 px-6 text-lg font-bold rounded-lg transition-all duration-300;
+  }
+
+  /* Gradient background */
+  .bg-hero-gradient {
+    @apply bg-gradient-to-b from-green-50 to-white;
+  }
+
+  /* Card styling */
+  .card {
+    @apply bg-white border-2 border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  /* Badge styling */
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-semibold;
+  }
+}
+
+/* Smooth animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  body {
+    @apply text-base;
+  }
+}
