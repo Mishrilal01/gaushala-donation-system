@@ -276,11 +276,6 @@ export default function Admin() {
               {loading ? 'Logging in...' : 'Login'}
             </button>
           </form>
-
-          {/* Default Password Note */}
-          <p className="text-xs text-gray-600 text-center mt-6 italic">
-            (Default: gaushala123)
-          </p>
         </div>
       </div>
     );
