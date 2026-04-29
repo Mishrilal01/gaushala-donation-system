@@ -90,13 +90,14 @@ export default function DetailedDonations({ isOpen, onClose }) {
 
     // Categorize donations
     donations.forEach((donation) => {
-      if (donation.amount < 500) {
+      const amount = donation.amount || 0;
+      if (amount < 500) {
         groups.small.donations.push(donation);
-      } else if (donation.amount < 1000) {
+      } else if (amount < 1000) {
         groups.tree.donations.push(donation);
-      } else if (donation.amount < 1500) {
+      } else if (amount < 1500) {
         groups.silver.donations.push(donation);
-      } else if (donation.amount < 2000) {
+      } else if (amount < 2000) {
         groups.gold.donations.push(donation);
       } else {
         groups.platinum.donations.push(donation);
@@ -162,17 +163,17 @@ export default function DetailedDonations({ isOpen, onClose }) {
       {/* Content */}
       <div className={isSmallCard ? 'w-full' : 'flex-1'}>
         <p className="text-base md:text-lg font-bold text-gray-800">
-          {donation.name}
+          {donation.name || "Anonymous"}
         </p>
         <p className="text-xs md:text-sm text-gray-500 mt-1">
-          📅 {formatDateIST(donation.date)}
+          📅 {donation.date ? formatDateIST(donation.date) : "N/A"}
         </p>
       </div>
 
       {/* Amount - Always on right or below for small cards */}
       <div className={isSmallCard ? 'mt-3 w-full text-center' : 'text-right ml-4'}>
         <p className="text-xl md:text-2xl font-bold text-green-600">
-          ₹{donation.amount.toLocaleString()}
+          ₹{(donation.amount || 0).toLocaleString()}
         </p>
       </div>
     </div>
@@ -419,7 +420,7 @@ export default function DetailedDonations({ isOpen, onClose }) {
                 <p className="text-base md:text-lg font-semibold text-gray-800">
                   कुल दान: {donations.length} | Total Amount: ₹
                   {donations
-                    .reduce((sum, d) => sum + d.amount, 0)
+                    .reduce((sum, d) => sum + (d.amount || 0), 0)
                     .toLocaleString()}
                 </p>
               </div>

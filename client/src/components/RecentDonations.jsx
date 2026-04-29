@@ -57,7 +57,7 @@ export default function RecentDonations({ onViewAll }) {
    * Case-insensitive search by donor name
    */
   const filteredDonations = donations.filter((donation) =>
-    donation.name.toLowerCase().includes(searchQuery.toLowerCase())
+    (donation.name || "Anonymous").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Show only top 10 donations from filtered results
@@ -74,7 +74,7 @@ export default function RecentDonations({ onViewAll }) {
   }
 
   return (
-    <div className="w-full bg-gray-50 px-4 py-12 overflow-x-hidden\">
+    <div className="w-full bg-gray-50 px-4 py-12 overflow-x-hidden">
       <div className="max-w-4xl mx-auto">
         {/* Section Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-green-700 text-center mb-8">
@@ -125,17 +125,17 @@ export default function RecentDonations({ onViewAll }) {
                 {/* Left Side - Name and Date */}
                 <div className="flex-1">
                   <p className="text-base md:text-lg font-bold text-gray-800">
-                    {donation.name}
+                    {donation.name || "Anonymous"}
                   </p>
                   <p className="text-xs md:text-sm text-gray-500 mt-0.5">
-                    📅 {formatDate(donation.date)}
+                    📅 {donation.date ? formatDate(donation.date) : "N/A"}
                   </p>
                 </div>
 
                 {/* Right Side - Amount */}
                 <div className="text-right ml-2 flex-shrink-0">
                   <p className="text-lg md:text-2xl font-bold text-green-600">
-                    ₹{donation.amount.toLocaleString()}
+                    ₹{(donation.amount || 0).toLocaleString()}
                   </p>
                 </div>
               </div>

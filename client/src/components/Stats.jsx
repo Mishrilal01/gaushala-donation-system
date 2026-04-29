@@ -73,7 +73,7 @@ export default function Stats() {
               💰
             </p>
             <p className="text-xl md:text-2xl font-bold text-green-600 mb-0.5">
-              ₹{stats.totalAmount.toLocaleString()}
+              ₹{(stats.totalAmount || 0).toLocaleString()}
             </p>
             <p className="text-xs md:text-sm text-gray-600 font-semibold">
               कुल दान / Total Donated
@@ -86,7 +86,7 @@ export default function Stats() {
               💸
             </p>
             <p className="text-xl md:text-2xl font-bold text-orange-600 mb-0.5">
-              ₹{stats.totalUsed.toLocaleString()}
+              ₹{(stats.totalUsed || 0).toLocaleString()}
             </p>
             <p className="text-xs md:text-sm text-gray-600 font-semibold">
               कुल खर्च / Total Used
@@ -95,7 +95,7 @@ export default function Stats() {
 
           {/* Remaining Balance */}
           <div className={`bg-gradient-to-br rounded-lg p-4 md:p-5 text-center border-2 ${
-            stats.remaining >= 0
+            (stats.remaining || 0) >= 0
               ? 'from-blue-50 to-blue-100 border-blue-200'
               : 'from-red-50 to-red-100 border-red-200'
           }`}>
@@ -103,16 +103,16 @@ export default function Stats() {
               🧾
             </p>
             <p className={`text-xl md:text-2xl font-bold mb-0.5 ${
-              stats.remaining >= 0 ? 'text-blue-600' : 'text-red-600'
+              (stats.remaining || 0) >= 0 ? 'text-blue-600' : 'text-red-600'
             }`}>
-              ₹{Math.abs(stats.remaining).toLocaleString()}
-              {stats.remaining < 0 && ' '}
-              {stats.remaining < 0 && <span className="text-red-600">(-)</span>}
+              ₹{Math.abs(stats.remaining || 0).toLocaleString()}
+              {(stats.remaining || 0) < 0 && ' '}
+              {(stats.remaining || 0) < 0 && <span className="text-red-600">(-)</span>}
             </p>
             <p className="text-xs md:text-sm text-gray-600 font-semibold">
               बचा हुआ / Remaining
             </p>
-            {stats.remaining < 0 && (
+            {(stats.remaining || 0) < 0 && (
               <p className="text-xs text-red-600 font-semibold mt-1">
                 अभी खर्च दान से अधिक है
               </p>
@@ -174,11 +174,11 @@ export default function Stats() {
           <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
             <div
               className="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full transition-all duration-1000 ease-out flex items-center justify-center"
-              style={{ width: `${stats.progressPercentage}%` }}
+              style={{ width: `${stats.progressPercentage || 0}%` }}
             >
-              {stats.progressPercentage > 20 && (
+              {(stats.progressPercentage || 0) > 20 && (
                 <span className="text-white font-bold text-xs">
-                  {stats.treesPlanted}/{stats.goalTrees}
+                  {stats.treesPlanted || 0}/{stats.goalTrees || 0}
                 </span>
               )}
             </div>
@@ -186,9 +186,9 @@ export default function Stats() {
 
           {/* Progress Message */}
           <p className="text-center mt-4 text-gray-600 text-sm md:text-base">
-            {stats.treesPlanted < stats.goalTrees
-              ? `${stats.goalTrees - stats.treesPlanted} और पेड़ लगाने हैं / ${
-                  stats.goalTrees - stats.treesPlanted
+            {(stats.treesPlanted || 0) < (stats.goalTrees || 100)
+              ? `${(stats.goalTrees || 100) - (stats.treesPlanted || 0)} और पेड़ लगाने हैं / ${
+                  (stats.goalTrees || 100) - (stats.treesPlanted || 0)
                 } more trees to go`
               : '🎉 लक्ष्य पूरा हो गया! / Goal Achieved!'}
           </p>

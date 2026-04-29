@@ -96,7 +96,7 @@ export default function FundUsage() {
             <div className="bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-5 md:p-6 shadow-sm">
               <p className="text-sm text-gray-600 mb-1">कुल खर्च / Total Expenses</p>
               <p className="text-3xl md:text-4xl font-bold text-orange-600">
-                ₹{expenses.reduce((sum, exp) => sum + exp.amount, 0).toLocaleString()}
+                ₹{expenses.reduce((sum, exp) => sum + (exp.amount || 0), 0).toLocaleString()}
               </p>
               <p className="text-sm text-gray-600 mt-2">
                 {expenses.length} खर्चे / expenses logged
@@ -132,7 +132,7 @@ export default function FundUsage() {
                   <div className="flex flex-row md:flex-col items-center md:items-end gap-2 md:gap-2">
                     <div className="text-right ml-7">
                       <p className="text-2xl md:text-3xl font-bold text-orange-600">
-                        ₹{expense.amount.toLocaleString()}
+                        ₹{(expense.amount || 0).toLocaleString()}
                       </p>
                       {/* <p className="text-xs text-gray-600">खर्च / Expense</p> */}
                     </div>
@@ -140,7 +140,7 @@ export default function FundUsage() {
                     {/* View Bill Button */}
                     {expense.image_url && (
                       <button
-                        onClick={() => openImageModal(expense.image_url)}
+                        onClick={() => openImageModal(encodeURI(expense.image_url))}
                         className="text-xs bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-all duration-200 font-semibold whitespace-nowrap cursor-pointer shadow-sm hover:shadow-md"
                       >
                         📸 बिल देखें
@@ -193,7 +193,7 @@ export default function FundUsage() {
             {/* Modal Body - Image (scrollable if needed) */}
             <div className="bg-gray-100 flex-1 flex items-center justify-center overflow-auto">
               <img
-                src={selectedImage}
+                src={encodeURI(selectedImage)}
                 alt="Expense Bill"
                 className="w-auto h-auto max-w-full max-h-full rounded-lg shadow-md object-contain"
               />
@@ -208,7 +208,7 @@ export default function FundUsage() {
                 बंद करें / Close
               </button>
               <a
-                href={selectedImage}
+                href={encodeURI(selectedImage)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
