@@ -14,7 +14,7 @@ import { formatDateTimeIST } from '../utils/dateFormatter';
 
 export default function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('adminToken'));
+  const [token, setToken] = useState(null);
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -55,7 +55,6 @@ export default function Admin() {
       if (response.success) {
         const newToken = response.token;
         setToken(newToken);
-        localStorage.setItem('adminToken', newToken);
         setIsLoggedIn(true);
         setPassword('');
         setLoginError('');
@@ -167,7 +166,6 @@ export default function Admin() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setToken(null);
-    localStorage.removeItem('adminToken');
     setPassword('');
   };
 

@@ -17,11 +17,11 @@ export default function Hero() {
   return (
     <div className="w-full bg-gradient-to-b from-green-50 via-green-25 to-white px-4 md:px-8 py-16 md:py-24">
       <div className="max-w-6xl mx-auto">
-        {/* 2-Column Layout - Desktop, Stack on Mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        {/* Responsive Layout - Centered on Mobile, 2-Column on Desktop */}
+        <div className="flex flex-col md:grid md:grid-cols-2 md:gap-12 items-center md:items-start">
           
-          {/* LEFT SIDE - TEXT CONTENT */}
-          <div className="flex flex-col justify-center space-y-5">
+          {/* TEXT CONTENT - Left column on desktop, centered on mobile */}
+          <div className="flex flex-col justify-center space-y-5 w-full text-center md:text-left">
             
             {/* Main Title */}
             <div>
@@ -59,7 +59,7 @@ export default function Hero() {
             </p>
 
             {/* CTA Button */}
-            <div className="pt-2 flex justify-center">
+            <div className="pt-2 flex justify-center md:justify-start">
               <button
                 onClick={scrollToDonation}
                 className="bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-bold py-3 px-5 sm:px-6 md:px-8 rounded-xl text-base sm:text-lg md:text-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap"
@@ -69,8 +69,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT SIDE - IMAGE */}
-          <div className="flex justify-center items-center">
+          {/* IMAGE - Right column on desktop, centered below text on mobile */}
+          <div className="flex justify-center items-center mt-8 md:mt-0 w-full">
             <div className="relative w-full h-80 md:h-96 lg:h-[450px] rounded-2xl overflow-hidden shadow-xl">
               <img
                 src="/cow.PNG"
